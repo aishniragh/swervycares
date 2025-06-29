@@ -157,11 +157,11 @@
     <form id="kitRequestForm" onsubmit="handleFormSubmission(event)">
       <div class="form-group">
         <label>Full Name</label>
-        <input type="text" required />
+        <input type="text" name="user_name" required />
       </div>
       <div class="form-group">
         <label>Age Range</label>
-        <select required>
+        <select name="user_age" required>
           <option value="">Select your age range</option>
           <option>10-13</option>
           <option>14-16</option>
@@ -170,15 +170,15 @@
       </div>
       <div class="form-group">
         <label>Lip Shade Preference</label>
-        <input type="text" placeholder="e.g., coral, rose, nude, berry" />
+        <input type="text" name="user_shade" placeholder="e.g., coral, rose, nude, berry" />
       </div>
       <div class="form-group">
         <label>Favorite Scent/Style</label>
-        <input type="text" placeholder="e.g., vanilla, floral, citrus" />
+        <input type="text" name="user_scent" placeholder="e.g., vanilla, floral, citrus" />
       </div>
       <div class="form-group">
         <label>What makes you feel confident?</label>
-        <textarea placeholder="Share what makes you feel your best..." required></textarea>
+        <textarea name="user_confidence" placeholder="Share what makes you feel your best..." required></textarea>
       </div>
       <div class="form-group consent-container">
         <label class="consent-text">I consent to receiving a kit and understand my info will be used to create it.</label>
@@ -232,11 +232,11 @@
 
       const form = document.getElementById('kitRequestForm');
       const formData = {
-        name: form.querySelector('input[required]').value,
-        age: form.querySelector('select').value,
-        shade: form.querySelector('input[placeholder="e.g., coral, rose, nude, berry"]').value,
-        scent: form.querySelector('input[placeholder="e.g., vanilla, floral, citrus"]').value,
-        confidence: form.querySelector('textarea').value
+        name: form.user_name.value,
+        age: form.user_age.value,
+        shade: form.user_shade.value,
+        scent: form.user_scent.value,
+        confidence: form.user_confidence.value
       };
 
       fetch('https://script.google.com/macros/s/AKfycbwJVJHVBuMPewnRNEfSd2tO96ZFYyx1KPxmWzW7RFvXr99_szb7hH7Dr6IFIZmdoHBhtQ/exec', {
