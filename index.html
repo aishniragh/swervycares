@@ -163,18 +163,64 @@
         <label>Age Range</label>
         <select name="user_age" required>
           <option value="">Select your age range</option>
-          <option>10-13</option>
+          <option>6-10</option>
+          <option>11-13</option>
           <option>14-16</option>
-          <option>17-19</option>
+          <option>17+</option>
         </select>
       </div>
       <div class="form-group">
-        <label>Lip Shade Preference</label>
-        <input type="text" name="user_shade" placeholder="e.g., coral, rose, nude, berry" />
+        <label>Address</label>
+        <input type="text" name="user_address" required />
       </div>
       <div class="form-group">
-        <label>Favorite Scent/Style</label>
-        <input type="text" name="user_scent" placeholder="e.g., vanilla, floral, citrus" />
+        <label>Email (optional)</label>
+        <input type="email" name="user_email" />
+      </div>
+      <div class="form-group">
+        <label>Phone Number (optional)</label>
+        <input type="tel" name="user_phone" />
+      </div>
+      <div class="form-group">
+        <label>Lip Shade Preference</label>
+        <select name="user_shade" required>
+          <option value="">Select your shade</option>
+          <option>Coral</option>
+          <option>Rose</option>
+          <option>Nude</option>
+          <option>Berry</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Lip Scent Preference</label>
+        <select name="user_scent" required>
+          <option value="">Select your scent</option>
+          <option>Vanilla</option>
+          <option>Floral</option>
+          <option>Citrus</option>
+          <option>Mint</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Lashes Preference</label>
+        <select name="user_lashes" required>
+          <option value="">Select your lash preference</option>
+          <option>Natural</option>
+          <option>Glam</option>
+          <option>No Lashes</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Lip Oil</label>
+        <select name="user_oil" required>
+          <option value="">Confirm lip oil preference</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Lip Scrub (Scent Preferences)</label>
+        <input type="text" name="user_scrub" placeholder="e.g., Vanilla, Citrus, Berry" required />
       </div>
       <div class="form-group">
         <label>What makes you feel confident?</label>
@@ -238,8 +284,14 @@
       const formData = {
         name: form.user_name.value,
         age: form.user_age.value,
+        address: form.user_address.value,
+        email: form.user_email.value,
+        phone: form.user_phone.value,
         shade: form.user_shade.value,
         scent: form.user_scent.value,
+        lashes: form.user_lashes.value,
+        oil: form.user_oil.value,
+        scrub: form.user_scrub.value,
         confidence: form.user_confidence.value
       };
 
