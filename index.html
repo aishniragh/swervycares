@@ -120,6 +120,24 @@
       flex: 1;
       text-align: center;
     }
+    #form-submitted-message {
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      color: #4caf50;
+      display: none;
+      margin-top: 20px;
+    }
+    .consent-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .consent-text {
+      flex: 1;
+      margin-right: 10px;
+    }
   </style>
 </head>
 <body>
@@ -127,132 +145,110 @@
     <h1>Swervy Cares</h1>
     <p>Empowering girls through self-care</p>
     <nav>
-      <a href="#home">Home</a>
       <a href="#request">Request a Kit</a>
       <a href="#impact">Our Impact</a>
-      <a href="#" id="adminLink" style="display: none;" onclick="showAdminLogin()">Admin</a>
+      <a href="#admin" id="adminLink" style="display: none;">Admin</a>
     </nav>
   </header>
 
-  <script>
-    window.onload = function() {
-      const isOwner = prompt("Enter admin email to view admin tools (leave blank if not admin):");
-      if (isOwner === 'aishniragh@icloud.com' || isOwner === 'swervycares101@gmail.com') {
-        document.getElementById('adminLink').style.display = 'inline-block';
-      }
-    };
-    function showAdminLogin() {
-      document.getElementById('admin-login-modal').style.display = 'block';
-    }
-    function checkAdminLogin() {
-      const email = document.getElementById('adminEmail').value;
-      const password = document.getElementById('adminPassword').value;
-      const allowedLogins = [
-        { email: 'aishniragh@icloud.com', password: 'Aishni@00' },
-        { email: 'swervycares101@gmail.com', password: 'Aishni@00' }
-      ];
+  <section class="section" id="request">
+    <h2 style="text-align: center;">Request Your Swervy Cares Kit</h2>
+    <p style="text-align: center; max-width: 600px; margin: auto;">Tell us about yourself so we can create the perfect personalized kit for you.</p>
+    <form id="kitRequestForm" onsubmit="handleFormSubmission(event)">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" required />
+      </div>
+      <div class="form-group">
+        <label>Age Range</label>
+        <select required>
+          <option value="">Select your age range</option>
+          <option>10-13</option>
+          <option>14-16</option>
+          <option>17-19</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Lip Shade Preference</label>
+        <input type="text" placeholder="e.g., coral, rose, nude, berry" />
+      </div>
+      <div class="form-group">
+        <label>Favorite Scent/Style</label>
+        <input type="text" placeholder="e.g., vanilla, floral, citrus" />
+      </div>
+      <div class="form-group">
+        <label>What makes you feel confident?</label>
+        <textarea placeholder="Share what makes you feel your best..." required></textarea>
+      </div>
+      <div class="form-group consent-container">
+        <label class="consent-text">I consent to receiving a kit and understand my info will be used to create it.</label>
+        <input type="checkbox" required style="transform: scale(1.2);" />
+      </div>
+      <div class="form-group" style="text-align: right;">
+        <button type="submit">Submit Kit Request</button>
+      </div>
+    </form>
+    <div id="form-submitted-message">Form submitted!</div>
+  </section>
 
-      const match = allowedLogins.find(acc => acc.email === email && acc.password === password);
-      if (match) {
-        document.getElementById('admin-login-modal').style.display = 'none';
-        document.getElementById('admin').style.display = 'block';
-      } else {
-        document.getElementById('login-error').textContent = 'Incorrect email or password.';
-      }
+  <section class="section" id="impact">
+    <h2 style="text-align: center;">Our Impact</h2>
+    <p style="text-align: center;">Together, we're building confidence one kit at a time.</p>
+    <div class="impact-metrics">
+      <div class="metric-card"><strong>0</strong><br />Kits Delivered</div>
+      <div class="metric-card"><strong>0</strong><br />Girls Empowered</div>
+      <div class="metric-card"><strong>1</strong><br />Communities Reached</div>
+    </div>
+    <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+      <h3 style="text-align: center;">Our 2025 Goal</h3>
+      <p>Progress toward 500 kits</p>
+      <div class="progress">
+        <div class="progress-bar" style="width: 0%;"></div>
+      </div>
+      <p style="text-align: center;">We're on a mission to donate 500+ self-care kits this year. Join us by volunteering, donating, or sharing our mission!</p>
+      <div style="text-align: center;">
+        <button>Volunteer With Us</button>
+        <button style="background: white; color: #ff4d9e; border: 2px solid #ff4d9e;">Make a Donation</button>
+        <button style="background: white; color: #444; border: 2px solid #ccc;">Share Our Story</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="admin" style="display: none;">
+    <h2>Admin Dashboard</h2>
+    <p>Admin features go here (in development).</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Swervy Cares. All rights reserved.</p>
+    <div>
+      <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+    </div>
+  </footer>
+
+  <script>
+    function handleFormSubmission(event) {
+      event.preventDefault();
+
+      const formData = {
+        name: document.querySelector('input[type="text"]').value,
+        age: document.querySelector('select').value,
+        shade: document.querySelector('input[placeholder="e.g., coral, rose, nude, berry"]').value,
+        scent: document.querySelector('input[placeholder="e.g., vanilla, floral, citrus"]').value,
+        confidence: document.querySelector('textarea').value
+      };
+
+      fetch('https://script.google.com/macros/s/AKfycbwJVJHVBuMPewnRNEfSd2tO96ZFYyx1KPxmWzW7RFvXr99_szb7hH7Dr6IFIZmdoHBhtQ/exec', {
+        method: 'POST',
+        body: JSON.stringify(formData)
+      })
+      .then(response => response.text())
+      .then(result => {
+        document.querySelector('#kitRequestForm').style.display = 'none';
+        document.querySelector('#form-submitted-message').style.display = 'block';
+      })
+      .catch(error => console.error('Error:', error));
     }
   </script>
-
-  <section class="section" id="request">
-  <h2 style="text-align: center;">Request Your Swervy Cares Kit</h2>
-  <p style="text-align: center; max-width: 600px; margin: auto;">Tell us about yourself so we can create the perfect personalized kit for you.</p>
-  <form id="kitRequestForm">
-    <div class="form-group">
-      <label>Full Name</label>
-      <input type="text" name="user_name" required />
-    </div>
-    <div class="form-group">
-      <label>Age Range</label>
-      <select name="user_age" required>
-        <option value="">Select your age range</option>
-        <option>10-13</option>
-        <option>14-16</option>
-        <option>17-19</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>Lip Shade Preference</label>
-      <input type="text" name="user_shade" placeholder="e.g., coral, rose, nude, berry" />
-    </div>
-    <div class="form-group">
-      <label>Favorite Scent/Style</label>
-      <input type="text" name="user_scent" placeholder="e.g., vanilla, floral, citrus" />
-    </div>
-    <div class="form-group">
-      <label>What makes you feel confident?</label>
-      <textarea name="user_confidence" placeholder="Share what makes you feel your best..." required></textarea>
-    </div>
-    <div class="form-group">
-      <label><input type="checkbox" required style="margin-right: 8px; transform: scale(1.2);" /> I consent to receiving a kit and understand my info will be used to create it.</label>
-    </div>
-    <button type="submit">Submit Kit Request</button>
-  </form>
-</section>
-
-<section class="section" id="impact">
-  <h2 style="text-align: center;">Our Impact</h2>
-  <p style="text-align: center;">Together, we're building confidence one kit at a time.</p>
-  <div class="impact-metrics">
-    <div class="metric-card"><strong>0</strong><br />Kits Delivered</div>
-    <div class="metric-card"><strong>0</strong><br />Girls Empowered</div>
-    <div class="metric-card"><strong>1</strong><br />Communities Reached</div>
-  </div>
-  <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-    <h3 style="text-align: center;">Our 2025 Goal</h3>
-    <p>Progress toward 500 kits</p>
-    <div class="progress">
-      <div class="progress-bar" style="width: 0%;"></div>
-    </div>
-    <p style="text-align: center;">We're on a mission to donate 500+ self-care kits this year. Join us by volunteering, donating, or sharing our mission!</p>
-    <div style="text-align: center;">
-      <button>Volunteer With Us</button>
-      <button style="background: white; color: #ff4d9e; border: 2px solid #ff4d9e;">Make a Donation</button>
-      <button style="background: white; color: #444; border: 2px solid #ccc;">Share Our Story</button>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="admin" style="display: none;">
-  <h2>Admin Dashboard</h2>
-  <p>Manage kit requests and track program metrics.</p>
-  <div class="admin-stats">
-    <div class="stat-box"><strong>0</strong><br />Pending Requests</div>
-    <div class="stat-box"><strong>0</strong><br />Completed</div>
-    <div class="stat-box"><strong>0</strong><br />This Week</div>
-    <div class="stat-box"><strong>0</strong><br />Total Impact</div>
-  </div>
-  <table>
-    <thead>
-      <tr><th>Name</th><th>Age</th><th>Preferences</th><th>Status</th><th>Date</th><th>Actions</th></tr>
-    </thead>
-    <tbody>
-      <tr><td colspan="6" style="text-align:center;">No kit requests yet</td></tr>
-    </tbody>
-  </table>
-</section>
-
-<div id="admin-login-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 9999;">
-  <div style="background: white; padding: 30px; border-radius: 10px; width: 90%; max-width: 400px; margin: 100px auto; text-align: center;">
-    <h3>Admin Login</h3>
-    <input type="text" id="adminEmail" placeholder="Email" style="width: 100%; margin-bottom: 10px; padding: 10px;">
-    <input type="password" id="adminPassword" placeholder="Password" style="width: 100%; margin-bottom: 20px; padding: 10px;">
-    <button onclick="checkAdminLogin()">Login</button>
-    <p id="login-error" style="color: red; margin-top: 10px;"></p>
-  </div>
-</div>
-
-<footer>
-  <p>&copy; 2025 Swervy Cares. All rights reserved.</p>
-  <div>
-    <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-  </div>
-</footer>
+</body>
+</html>
