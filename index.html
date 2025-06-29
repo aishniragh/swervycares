@@ -230,12 +230,13 @@
     function handleFormSubmission(event) {
       event.preventDefault();
 
+      const form = document.getElementById('kitRequestForm');
       const formData = {
-        name: document.querySelector('input[type="text"]').value,
-        age: document.querySelector('select').value,
-        shade: document.querySelector('input[placeholder="e.g., coral, rose, nude, berry"]').value,
-        scent: document.querySelector('input[placeholder="e.g., vanilla, floral, citrus"]').value,
-        confidence: document.querySelector('textarea').value
+        name: form.querySelector('input[required]').value,
+        age: form.querySelector('select').value,
+        shade: form.querySelector('input[placeholder="e.g., coral, rose, nude, berry"]').value,
+        scent: form.querySelector('input[placeholder="e.g., vanilla, floral, citrus"]').value,
+        confidence: form.querySelector('textarea').value
       };
 
       fetch('https://script.google.com/macros/s/AKfycbwJVJHVBuMPewnRNEfSd2tO96ZFYyx1KPxmWzW7RFvXr99_szb7hH7Dr6IFIZmdoHBhtQ/exec', {
