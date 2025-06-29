@@ -227,6 +227,10 @@
   </footer>
 
   <script>
+    window.onload = function() {
+      document.getElementById('kitRequestForm').reset();
+    };
+
     function handleFormSubmission(event) {
       event.preventDefault();
 
