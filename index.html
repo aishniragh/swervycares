@@ -3,30 +3,153 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Swervy Cares - Empowering Girls Through Self-Care</title>
+  <title>Swervy Cares</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fff5fa;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header, footer {
+      background: #ffd5ec;
+      padding: 20px 40px;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #444;
+      font-weight: 600;
+    }
+    .hero {
+      padding: 60px 20px;
+      text-align: center;
+      background: #ffe4ef;
+    }
+    .section {
+      padding: 50px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-top: 5px;
+    }
+    label {
+      font-weight: 600;
+    }
+    button {
+      background: #ff4d9e;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 10px 5px;
+    }
+    .impact-metrics {
+      display: flex;
+      justify-content: space-around;
+      gap: 20px;
+      margin: 40px 0;
+      text-align: center;
+    }
+    .metric-card {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      width: 150px;
+    }
+    .progress {
+      height: 14px;
+      background: #ffb6d2;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 10px 0;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: #ff4d9e;
+    }
+    .testimonial {
+      background: #fff0f5;
+      border-left: 4px solid #ff69b4;
+      padding: 20px;
+      margin: 20px 0;
+      font-style: italic;
+    }
+    footer a {
+      color: #444;
+      margin: 0 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background: #ffd5ec;
+    }
+    .admin-stats {
+      display: flex;
+      justify-content: space-around;
+      gap: 20px;
+    }
+    .stat-box {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      flex: 1;
+      text-align: center;
+    }
+    #form-submitted-message {
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      color: #4caf50;
+      display: none;
+      margin-top: 20px;
+    }
+    .consent-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .consent-text {
+      flex: 1;
+      margin-right: 10px;
+    }
+  </style>
 </head>
 <body>
   <header>
     <h1>Swervy Cares</h1>
     <p>Empowering girls through self-care</p>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="mission.html">Our Mission</a>
-      <a href="volunteer.html">Volunteer</a>
-      <a href="donation.html">Donate</a>
-      <a href="share.html">Share Our Story</a>
+      <a href="#request">Request a Kit</a>
+      <a href="#impact">Our Impact</a>
       <a href="#admin" id="adminLink" style="display: none;">Admin</a>
     </nav>
   </header>
-
-  <section class="hero">
-    <h2>Building Confidence, One Kit at a Time</h2>
-    <p>We believe every girl deserves to feel confident and empowered. Our personalized self-care kits are designed to celebrate individuality and promote self-love.</p>
-    <button onclick="window.location.href='#request'">Request Your Kit</button>
-    <button class="btn-secondary" onclick="window.location.href='mission.html'">Learn More</button>
-  </section>
 
   <section class="section" id="request">
     <h2 style="text-align: center;">Request Your Swervy Cares Kit</h2>
@@ -111,9 +234,7 @@
         <button type="submit">Submit Kit Request</button>
       </div>
     </form>
-    <div id="form-submitted-message" class="success-message hidden">
-      Thank you! Your kit request has been submitted. We'll be in touch soon!
-    </div>
+    <div id="form-submitted-message">Form submitted!</div>
   </section>
 
   <section class="section" id="impact">
@@ -124,7 +245,7 @@
       <div class="metric-card"><strong>0</strong><br />Girls Empowered</div>
       <div class="metric-card"><strong>1</strong><br />Communities Reached</div>
     </div>
-    <div class="card">
+    <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
       <h3 style="text-align: center;">Our 2025 Goal</h3>
       <p>Progress toward 500 kits</p>
       <div class="progress">
@@ -132,9 +253,9 @@
       </div>
       <p style="text-align: center;">We're on a mission to donate 500+ self-care kits this year. Join us by volunteering, donating, or sharing our mission!</p>
       <div style="text-align: center;">
-        <button onclick="window.location.href='volunteer.html'">Volunteer With Us</button>
-        <button class="btn-secondary" onclick="window.location.href='donation.html'">Make a Donation</button>
-        <button class="btn-tertiary" onclick="window.location.href='share.html'">Share Our Story</button>
+        <button>Volunteer With Us</button>
+        <button style="background: white; color: #ff4d9e; border: 2px solid #ff4d9e;">Make a Donation</button>
+        <button style="background: white; color: #444; border: 2px solid #ccc;">Share Our Story</button>
       </div>
     </div>
   </section>
@@ -145,12 +266,6 @@
   </section>
 
   <footer>
-    <div class="contact-info">
-      <h3>Contact Us</h3>
-      <p>Email: info@swervycares.org</p>
-      <p>Phone: (555) 123-4567</p>
-      <p>Follow us on social media for updates and inspiration!</p>
-    </div>
     <p>&copy; 2025 Swervy Cares. All rights reserved.</p>
     <div>
       <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
@@ -158,12 +273,10 @@
   </footer>
 
   <script>
-    // Reset form on page load
     window.onload = function() {
       document.getElementById('kitRequestForm').reset();
     };
 
-    // Handle form submission
     function handleFormSubmission(event) {
       event.preventDefault();
 
@@ -182,7 +295,6 @@
         confidence: form.user_confidence.value
       };
 
-      // Submit to Google Apps Script
       fetch('https://script.google.com/macros/s/AKfycbzXPCtXIZvAYuqVLZu1uCeiPaeyClzdhStpRqVaG9hTeMS0EmTSI9QhFsMJL7Ppo6yHSA/exec', {
         method: 'POST',
         body: JSON.stringify(formData)
@@ -190,14 +302,10 @@
       .then(response => response.text())
       .then(result => {
         document.querySelector('#kitRequestForm').style.display = 'none';
-        document.querySelector('#form-submitted-message').classList.remove('hidden');
+        document.querySelector('#form-submitted-message').style.display = 'block';
       })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('There was an error submitting your request. Please try again.');
-      });
+      .catch(error => console.error('Error:', error));
     }
   </script>
 </body>
 </html>
-
